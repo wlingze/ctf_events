@@ -1,0 +1,60 @@
+
+F2   = "\x1bOQ"
+F3   = "\x1bOR"
+F4   = "\x1bOS"
+F5   = "\x1b[15~"
+F10  = "\x1b[21~"
+
+END  = "\x1bOF"
+DOWN = "\x1bOB"
+UP   = "\x1bOA"
+LEFT = "\x1bOD"
+RIGH = "\x1bOC"
+
+
+delete cahracter
+	[backspace] 
+	[DC]
+
+cursor move
+	y++
+		[END]	(y=max_y-1)
+		[RIGHT]	[check x<max_x-3]
+	y--
+		[HOME]	(y=0)
+		[LEFT]
+	x++
+		[DOWN]	[check x<max_x-3]
+	x--
+		[UP]	[check x>0]
+
+file:
+	reload file 
+		[F5]
+		read_file
+
+	open file 
+		[F3]
+		set_filename
+		read_file
+
+	rename file 
+		[F4]
+		set_filename 
+
+	save file 
+		[F2]
+		set_filename
+		write_file 
+
+func:
+	set_filename:
+
+	read_file:
+
+	write_file:
+
+
+
+exit
+	[F10]
