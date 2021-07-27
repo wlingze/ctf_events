@@ -185,4 +185,3 @@ The following data can be obtained:
 
 `i=0x22, j=0xfa`: 0x40117a (_start+10)
 
-## empires

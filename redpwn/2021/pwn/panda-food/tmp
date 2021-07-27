@@ -2,13 +2,14 @@
 
 strcut food {
 	void * func; // !!! 
+
 	string {
 		char * buf; 
 		size_t buf_size;
-		size_t chunk_size; 		
 	} / {
 		char buf[0x10];
 	}
+	size_t chunk_size; 			
 
 }
 
