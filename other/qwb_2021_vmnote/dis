@@ -1,0 +1,583 @@
+_0000:	 push rbp
+_0002:	mov rbp, rsp
+_0005:	call _0023
+mov rdi, rax
+_000a:	call _00c5
+mov rdi, rax
+_000f:	test rdi, rdi
+_0012:	jz _001c
+_0017:	call _0145
+mov rdi, rax
+_001c:	call _003d
+mov rdi, rax
+_0021:	leave
+_0022:	mov rax, rdi
+		ret
+
+_0023:	call _04ab
+mov rdi, rax
+_0028:	mov rdi, 0x00000000
+_0032:	call _004d
+mov rdi, rax
+_0037:	call _005c
+mov rdi, rax
+_003c:	mov rax, rdi
+		ret
+
+_003d:	mov rdi, 0x00000000
+_0047:	call _0773
+mov rdi, rax
+_004c:	mov rax, rdi
+		ret
+
+_004d:	mov rsi, rdi
+_0050:	mov rdi, 0x00000000
+_005a:	mov rax, rdi
+		syscall
+_005b:	mov rax, rdi
+		ret
+
+_005c:	mov rsi, rdi
+_005f:	mov rdi, 0x00000001
+_0069:	mov rax, rdi
+		syscall
+_006a:	mov rax, rdi
+		ret
+
+_006b:	mov rdi, 0x00000002
+_0075:	mov rax, rdi
+		syscall
+_0076:	mov rax, rdi
+		ret
+
+# new
+_0077:	mov rsi, rdi
+_007a:	mov rdi, 0x00000003
+_0084:	mov rax, rdi
+		syscall
+_0085:	mov rax, rdi
+		ret
+
+# dele
+_0086:	mov rsi, rdi
+_0089:	mov rdi, 0x00000004
+_0093:	mov rax, rdi
+		syscall
+_0094:	mov rax, rdi
+		ret
+
+_0095:	mov rsi, rdi
+_0098:	mov rdi, 0x00000005
+_00a2:	mov rax, rdi
+		syscall
+_00a3:	mov rax, rdi
+		ret
+
+# edit
+_00a4:	mov rdx, rsi
+_00a7:	mov rsi, rdi
+_00aa:	mov rdi, 0x00000006
+_00b4:	mov rax, rdi
+		syscall
+_00b5:	mov rax, rdi
+		ret
+
+# show
+_00b6:	mov rsi, rdi
+_00b9:	mov rdi, 0x00000007
+_00c3:	mov rax, rdi
+		syscall
+_00c4:	mov rax, rdi
+		ret
+
+_00c5:	 push rbp
+_00c7:	mov rbp, rsp
+_00ca:	sub rsp, 0x00000060
+_00d4:	mov rdi, 0x00001000
+_00de:	call _06a8
+mov rdi, rax
+_00e3:	call _006b
+mov rdi, rax
+_00e8:	and rdi, 0x0fffffff
+_00f2:	mov [rsp], rdi
+_00f5:	call _0776
+		mov rdi, rax
+_00f7:	mov rdi, 0x0000000a
+_0101:	call _0775
+		mov rdi, rax
+_0103:	mov rdi, 0x0000100c
+_010d:	call _06a8
+mov rdi, rax
+_0112:	mov rdi, rsp
+_0115:	add rdi, 0x00000010
+_011f:	mov rsi, 0x00000030
+_0129:	call _05ef
+mov rdi, rax
+_012e:	mov rdi, rsp
+_0131:	add rdi, 0x00000010
+_013b:	mov rsi, [rsp]
+_013e:	call _0413
+mov rdi, rax
+_0143:	leave
+_0144:	mov rax, rdi
+		ret
+
+_0145:	 push rbp
+_0147:	mov rbp, rsp
+_014a:	mov rdi, 0x00001132
+_0154:	call _06a8
+mov rdi, rax
+_0159:	call _0629
+mov rdi, rax
+_015e:	cmp rdi, 0x00000001
+_0168:	jz _01ae
+_016d:	cmp rdi, 0x00000002
+_0177:	jz _01b8
+_017c:	cmp rdi, 0x00000003
+_0186:	jz _01c2
+_018b:	cmp rdi, 0x00000004
+_0195:	jz _01cc
+_019a:	cmp rdi, 0x00000005
+_01a4:	jz _01d6
+_01a9:	jmp _014a
+_01ae:	call _026a
+mov rdi, rax
+_01b3:	jmp _014a
+_01b8:	call _033d
+mov rdi, rax
+_01bd:	jmp _014a
+_01c2:	call _037b
+mov rdi, rax
+_01c7:	jmp _014a
+_01cc:	call _03d5
+mov rdi, rax
+_01d1:	jmp _014a
+_01d6:	leave
+_01d7:	mov rax, rdi
+		ret
+
+_01d8:	 push rbp
+_01da:	mov rbp, rsp
+_01dd:	sub rsp, 0x00000060
+_01e7:	mov [rsp], rdi
+_01ea:	mov rdx, rsp
+_01ed:	add rdx, 0x00000008
+_01f7:	mov [rdx], rsi
+_01fa:	mov rdi, rsi
+_01fd:	call _0077
+mov rdi, rax
+_0202:	test rdi, rdi
+_0205:	jz _030d
+_020a:	mov rdx, rsp
+_020d:	add rdx, 0x00000010
+_0217:	mov [rdx], rdi
+_021a:	mov rdx, [rsp]
+_021d:	mov rsi, 0x00001520
+_0227:	
+            mov rax, rdx; 
+            mov rbx, 8
+            mul rbx;
+            mov rdx, rax
+            _0231:	add rsi, rdx
+_0234:	mov [rsi], rdi
+_0237:	mov rdi, 0x00001182
+_0241:	call _06a8
+mov rdi, rax
+_0246:	mov rdx, rsp
+_0249:	add rdx, 0x00000008
+_0253:	mov rsi, [rdx]
+_0256:	add rdx, 0x00000008
+_0260:	mov rdi, [rdx]
+_0263:	call _00a4
+mov rdi, rax
+_0268:	leave
+_0269:	mov rax, rdi
+		ret
+
+_026a:	 push rbp
+_026c:	mov rbp, rsp
+_026f:	sub rsp, 0x00000060
+_0279:	mov rdi, 0x00001173
+_0283:	call _06a8
+mov rdi, rax
+_0288:	call _0629
+mov rdi, rax
+_028d:	cmp rdi, 0x00000000
+_0297:	jl _030d
+_029c:	cmp rdi, 0x00000004
+_02a6:	jg _030d
+_02ab:	mov [rsp], rdi
+_02ae:	mov rsi, 0x00001520
+_02b8:	
+            mov rax, rdi; 
+            mov rbx, 8
+            mul rbx;
+            mov rdi, rax
+            _02c2:	add rsi, rdi
+_02c5:	mov rdi, [rsi]
+_02c8:	test rdi, rdi
+_02cb:	jnz _030d
+_02d0:	mov rdi, 0x0000117a
+_02da:	call _06a8
+mov rdi, rax
+_02df:	call _0629
+mov rdi, rax
+_02e4:	cmp rdi, 0x00000000
+_02ee:	jl _030d
+_02f3:	cmp rdi, 0x00000060
+_02fd:	jg _030d
+_0302:	mov rsi, rdi
+_0305:	mov rdi, [rsp]
+_0308:	call _01d8
+mov rdi, rax
+_030d:	leave
+_030e:	mov rax, rdi
+		ret
+
+_030f:	 push rbp
+_0311:	mov rbp, rsp
+_0314:	mov rsi, 0x00001520
+_031e:	
+            mov rax, rdi; 
+            mov rbx, 8
+            mul rbx;
+            mov rdi, rax
+            _0328:	add rsi, rdi
+_032b:	mov rdi, [rsi]
+_032e:	test rdi, rdi
+_0331:	jz _033b
+_0336:	call _00b6
+mov rdi, rax
+_033b:	leave
+_033c:	mov rax, rdi
+		ret
+
+# show
+_033d:	 push rbp
+_033f:	mov rbp, rsp
+_0342:	mov rdi, 0x00001173
+_034c:	call _06a8
+mov rdi, rax
+_0351:	call _0629
+mov rdi, rax
+_0356:	cmp rdi, 0x00000000
+_0360:	jl _0379
+_0365:	cmp rdi, 0x00000004
+_036f:	jg _0379
+_0374:	call _030f
+mov rdi, rax
+_0379:	leave
+_037a:	mov rax, rdi
+		ret
+
+_037b:	 push rbp
+_037d:	mov rbp, rsp
+_0380:	mov rdi, 0x0000118d
+_038a:	call _0696
+mov rdi, rax
+_038f:	leave
+_0390:	mov rax, rdi
+		ret
+
+_0391:	 push rbp
+_0393:	mov rbp, rsp
+_0396:	sub rsp, 0x00000040
+_03a0:	mov rsi, 0x00001520
+_03aa:	
+            mov rax, rdi; 
+            mov rbx, 8
+            mul rbx;
+            mov rdi, rax
+            _03b4:	add rsi, rdi
+_03b7:	mov [rsp], rsi
+_03ba:	mov rdi, [rsi]
+_03bd:	test rdi, rdi
+_03c0:	jz _03d3
+_03c5:	call _0086
+mov rdi, rax
+_03ca:	mov rsi, [rsp]
+_03cd:	xor rdi, rdi
+_03d0:	mov [rsi], rdi
+_03d3:	leave
+_03d4:	mov rax, rdi
+		ret
+
+_03d5:	 push rbp
+_03d7:	mov rbp, rsp
+_03da:	mov rdi, 0x00001173
+_03e4:	call _06a8
+mov rdi, rax
+_03e9:	call _0629
+mov rdi, rax
+_03ee:	cmp rdi, 0x00000000
+_03f8:	jl _0411
+_03fd:	cmp rdi, 0x00000004
+_0407:	jg _0411
+_040c:	call _0391
+mov rdi, rax
+_0411:	leave
+_0412:	mov rax, rdi
+		ret
+
+_0413:	 push rbp
+_0415:	mov rbp, rsp
+_0418:	sub rsp, 0x00000060
+_0422:	mov [rsp], rdi
+_0425:	mov rdi, rsp
+_0428:	add rdi, 0x00000008
+_0432:	mov [rdi], rsi
+_0435:	mov rdi, [rsp]
+_0438:	call _0654
+mov rdi, rax
+_043d:	cmp rdi, 0x00000011
+_0447:	jg _0451
+_044c:	jmp _049a
+_0451:	mov rdi, [rsp]
+_0454:	add rdi, 0x00000011
+_045e:	call _0095
+mov rdi, rax
+_0463:	sub rdi, 0x12345678
+_046d:	mov rsi, rsp
+_0470:	add rsi, 0x00000008
+_047a:	mov rsi, [rsi]
+_047d:	cmp rsi, rdi
+_0480:	jz _048a
+_0485:	jmp _049a
+_048a:	mov rdi, [rsp]
+_048d:	call _06cf
+mov rdi, rax
+_0492:	test rdi, rdi
+_0495:	jnz _04a9
+_049a:	mov rdi, 0x00001018
+_04a4:	call _0769
+mov rdi, rax
+_04a9:	leave
+_04aa:	mov rax, rdi
+		ret
+
+_04ab:	mov rdi, 0x00001000
+_04b5:	mov rsi, 0x00000089
+_04bf:	call _05ba
+mov rdi, rax
+_04c4:	mov rdi, 0x0000100c
+_04ce:	mov rsi, 0x00000042
+_04d8:	call _05ba
+mov rdi, rax
+_04dd:	mov rdi, 0x00001018
+_04e7:	mov rsi, 0x00000024
+_04f1:	call _05ba
+mov rdi, rax
+_04f6:	mov rdi, 0x00001132
+_0500:	mov rsi, 0x00000047
+_050a:	call _05ba
+mov rdi, rax
+_050f:	mov rdi, 0x00001173
+_0519:	mov rsi, 0x00000011
+_0523:	call _05ba
+mov rdi, rax
+_0528:	mov rdi, 0x0000117a
+_0532:	mov rsi, 0x00000011
+_053c:	call _05ba
+mov rdi, rax
+_0541:	mov rdi, 0x00001182
+_054b:	mov rsi, 0x00000011
+_0555:	call _05ba
+mov rdi, rax
+_055a:	mov rdi, 0x0000118d
+_0564:	mov rsi, 0x00000011
+_056e:	call _05ba
+mov rdi, rax
+_0573:	mov rax, rdi
+		ret
+
+_0574:	xor rcx, rcx
+_0577:	xor r10, r10
+_057a:	xor r8, r8
+_057d:	xor r9, r9
+_0580:	mov r8, [rdi]
+_0583:	mov r9, [rsi]
+_0586:	sub r8, r9
+_0589:	cmp r8, 0x00000000
+_0593:	jl _05a0
+_0598:	add rcx, r8
+_059b:	jmp _05a3
+_05a0:	sub rcx, r8
+_05a3:	inc r10
+_05a5:	cmp r10, rdx
+_05a8:	jz _05b6
+_05ad:	inc rdi
+_05af:	inc rsi
+_05b1:	jmp _057a
+_05b6:	mov rdi, rcx
+_05b9:	mov rax, rdi
+		ret
+
+_05ba:	xor r10, r10
+_05bd:	xor r9, r9
+_05c0:	mov r10, [rdi]
+_05c3:	sub r10, r9
+_05c6:	and r10, 0x000000ff
+_05d0:	xor r10, rsi
+_05d3:	mov [rdi], r10
+_05d6:	cmp r10, 0x00000000
+_05e0:	jz _05ee
+_05e5:	inc rdi
+_05e7:	inc r9
+_05e9:	jmp _05c0
+_05ee:	mov rax, rdi
+		ret
+
+# read
+_05ef:	xor r10, r10
+_05f2:	xor r11, r11
+_05f5:	call _0777
+_05f7:	cmp r11, 0x0000000a
+_0601:	jz _0615
+_0606:	mov [rdi], r11
+_0609:	inc rdi
+_060b:	inc r10
+_060d:	cmp r10, rsi
+_0610:	jl _05f5
+_0615:	mov r11, 0x00000000
+_061f:	mov [rdi], r11
+_0622:	mov rdi, rsi
+_0625:	sub rdi, r10
+_0628:	mov rax, rdi
+		ret
+
+# read_number
+_0629:	 push rbp
+_062b:	mov rbp, rsp
+_062e:	sub rsp, 0x00000060
+_0638:	mov rdi, rsp
+_063b:	mov rsi, 0x00000060
+_0645:	call _05ef
+mov rdi, rax
+_064a:	mov rdi, rsp
+_064d:	call _0095
+mov rdi, rax
+_0652:	leave
+_0653:	mov rax, rdi
+		ret
+
+_0654:	xor r10, r10
+_0657:	xor r11, r11
+_065a:	mov r11, [rdi]
+_065d:	cmp r11, 0x00000000
+_0667:	jz _0675
+_066c:	inc rdi
+_066e:	inc r10
+_0670:	jmp _065a
+_0675:	mov rdi, r10
+_0678:	mov rax, rdi
+		ret
+
+_0679:	xor rdx, rdx
+_067c:	jmp _068a
+_0681:	mov rcx, [rdi]
+_0684:	call _0775
+		mov rdi, rax
+_0686:	inc rdi
+_0688:	inc rdx
+_068a:	cmp rdx, rsi
+_068d:	jl _0681
+_0692:	mov rdi, rdx
+_0695:	mov rax, rdi
+		ret
+
+# puts
+_0696:	call _06a8
+mov rdi, rax
+_069b:	mov rsi, 0x0000000a
+_06a5:	call _0775
+		mov rdi, rax
+_06a7:	mov rax, rdi
+		ret
+
+# printf
+_06a8:	 push rsi
+_06aa:	 push rdi
+_06ac:	xor rsi, rsi
+_06af:	mov rsi, [rdi]
+_06b2:	cmp rsi, 0x00000000
+_06bc:	jz _06ca
+_06c1:	call _0775
+		mov rdi, rax
+_06c3:	inc rdi
+_06c5:	jmp _06af
+_06ca:	pop rdi
+_06cc:	pop rsi
+_06ce:	mov rax, rdi
+		ret
+
+_06cf:	 push rbp
+_06d1:	mov rbp, rsp
+_06d4:	sub rsp, 0x00000040
+_06de:	mov [rsp], rdi
+_06e1:	mov rsi, 0x0000101f
+_06eb:	mov rdx, 0x00000011
+_06f5:	call _0739
+mov rdi, rax
+_06fa:	mov rdi, [rsp]
+_06fd:	mov rsi, 0x00001120
+_0707:	mov rdx, 0x00000011
+_0711:	call _0574
+mov rdi, rax
+_0716:	test rdi, rdi
+_0719:	jz _072d
+_071e:	mov rdi, 0x00000000
+_0728:	jmp _0737
+_072d:	mov rdi, 0x00000001
+_0737:	leave
+_0738:	mov rax, rdi
+		ret
+
+_0739:	 push rdx
+_073b:	 push rsi
+_073d:	 push rdi
+_073f:	xor rcx, rcx
+_0742:	jmp _075a
+_0747:	mov r8, [rdi]
+_074a:	mov r9, rsi
+_074d:	add r9, r8
+_0750:	mov r9, [r9]
+_0753:	mov [rdi], r9
+_0756:	inc rdi
+_0758:	inc rcx
+_075a:	cmp rcx, rdx
+_075d:	jl _0747
+_0762:	pop rdi
+_0764:	pop rsi
+_0766:	pop rdx
+_0768:	mov rax, rdi
+		ret
+
+_0769:	call _0696
+mov rdi, rax
+_076e:	call _0773
+mov rdi, rax
+_0773:	call _0774 # exit
+_0774:	 mov rax, 1908;
+ret;
+
+# print_char
+_0775:	 mov rax, 1909;
+ret;
+
+# pritn_int
+_0776:	 mov rax, 1910;
+ret;
+
+# input
+_0777:	 mov rax, 1911;
+ret;
+
+b'\xea\xe2\xea\xe8\xe9\xf1\xed\xf5\xf4\xb2\x93\x002$34%2,.\x80kL\x00AWXNZ)\x00\xda\xb3\x94\xabw`\xb8n\xc0]\x9a\xa5_.L\xb5b\xef\xb9\xe7\xa8H\xc3<\x16C\x1f\x08\xdb\xe6\xd9\xc98\\\x02=}\xfb\x03\xf6\xb0\xbe\x86\xd8\x130Y\xe5\xd0\x93\x91\t\xc2Q\x04\xb1A\xd5q\xec \x07\xfa\xcfU\xcc\x92\x85\x7f\xc81^\xdf!\xa3\xf57G\xbax\xfe\xae>+%\x19\x97@\xfcN\x84\xa7\xe1\xf1\x8cX\x8f\x90\xa1\xd3\xd7z-\rd\x0e5i\xbd\xdd\xe0\xa6\xeb\x9b\xeaW\xce#\x1ey(\xaaK\x06g\xe3\x12M\xaf3r,\xc1o"v4\xee\x89\xf2\xc6\xbc\xd6\x11?V\xbb:\x8bJ\x8a\xa0jScZ\x0c\x00\xb4\xf9/\x14$\x9e\xf4\xfd\xf7\xc7e\x17\xf0\x9fp\x83\xcaO\x1a\xf3\xedk*s\xac\x1d\xe2\xe4\xcdF\x10\x05\xb2&\xadm\xe9lB\xb6\x1b\xc5\xde\x82P\x0b~I9\x962;[\x01\xa4\xc4h)\x18TDa\xb7\x88\xe8\x95\xd1\x15\xf8\xa2\x81\xa9\x8e\xff\x80\x1c\x8d\x98\x87\xd2\'{\xdc\x9cu6\xd4\xcb\nfERt\xbf|\x9d\x0f\x99\x00\xd0\x93\xd7X\x04#\xb1X\x1e\x93\xd5\xd0\xea\xd0#QX\x00jklm.\'/9rstuY\x83wv93B`\x89~}KGAJh\x90\x86\x85ACOUp\x97\x8e\x8dJJTL^Nz\xa0\x98\x97Sqag\x82Zf`g^]\xb5\xb6\xa5\x86\x00xvk.5\x16\x00bymw/6\x17\x00r\x7f\x81hx\x84k29\x1a\x00\x7f\x7fg4|\x81g\x84|\x85~\x8aq=>?!'
+(b'challenge ', '0x0')
+(b'passcode: ', '0xc')
+(b'error', '0x18')
+(b'----menu----\n1. new\n2. show\n3. edit\n4. delete\n5. exit\nchoice>> ', '0x132')
+(b'idx: ', '0x173')
+(b'content: ', '0x182')
+(b'not implement!!!', '0x18d')
+b'01d_6u7_v190r0u5_'
