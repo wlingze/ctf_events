@@ -4,11 +4,16 @@ Recording participated ctf events
 
 ## list
 
-- [ ] [redpwn2021](https://2021.redpwn.net/challs)
+- [ ] googlectf 2021
+    - [x] compress
+- [ ] redpwn2021
+- [x] cybrics 2021
+    - [x] gross
+    - [x] litt_bug_editor
+- [ ] inctf 2021
+    - [x] Ancient House
+- [ ] other
+    - [x] qwb_vmnote
 
 
-
-## about
-
-lingze: ctfer for Syclover
 
