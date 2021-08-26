@@ -1,19 +1,29 @@
-# ctf_events
+# my_ctf
 
 Recording participated ctf events
 
-## list
+## ctf_events
 
-- [ ] googlectf 2021
-    - [x] compress
-- [ ] redpwn2021
-- [x] cybrics 2021
-    - [x] gross
-    - [x] litt_bug_editor
+- [ ] redpwn 2021
+- [ ] googlectf 2021 
+- [ ] cybrics
 - [ ] inctf 2021
-    - [x] Ancient House
-- [ ] other
-    - [x] qwb_vmnote
+- [ ] uiuctf
 
+## category
 
+- [ ] shellcode 
+    * qwb2021_shellcode 
+
+## other
+
+- [x] qwb2021_vmnote
+
+    vm, heap, seccomp, srop, 
+
+## about
+
+ctfer : lingze 
+
+[@Syclove](https://ctftime.org/team/455)
 
