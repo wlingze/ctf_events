@@ -1,0 +1,8 @@
+# /bin/sh
+
+mv core.cpio core/core.cpio.gz
+cd core
+gunzip core.cpio.gz
+cpio -idm < core.cpio
+rm core.cpio
+
