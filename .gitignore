@@ -1,8 +1,26 @@
 .gdb_history
 .idea
+.DS_Store
+ctf_events/rwctf/rwctf/QLaaS/qiling
+*.id0
+*.id1
+*.id2
+*.man
+*.til
+
 
 
 ctf_events/redpwn/2021/pwn/empires/ctf-challenge
 ctf_events/redpwn/2021/pwn/empires/chromium-q7rn3kvwgmv8vth7.tar.bz2
 ctf_events/inctf/2021/pwn_Ancient_House/jemalloc-2.2.5/
 ctf_events/redpwn/2021/pwn_simple/empires/ctf-challenge/
+ctf_events/google_ctf/2021/pwn_FULL_CHAIN/chromium
+category/kernel/qwb_2018_core/core
+category/kernel/qwb_2018_core/core.cpio
+category/kernel/qwb_2018_core/start.sh
+category/kernel/qwb_2018_core/bzImage
+category/kernel/CISCN_2017_babydriver/gadget
+category/kernel/CISCN_2017_babydriver/linux-4.4.72
+category/kernel/CISCN_2017_babydriver/vmlinux
+category/kernel/CISCN_2017_babydriver/rootfs
+
